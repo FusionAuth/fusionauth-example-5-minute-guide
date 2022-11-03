@@ -1,6 +1,6 @@
 {
-  "name": "fusionauth-node-example",
-  "version": "0.0.0",
+  "name": "fusionauth-example-5-minute-guide",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"

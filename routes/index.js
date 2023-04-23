@@ -29,7 +29,7 @@ router.get('/', function (req, res, next) {
   req.session.stateValue = stateValue;
 
   //generate the pkce challenge/verifier dict
-  const pkce_pair = pkceChallenge();
+  const pkce_pair = pkceChallenge.default();
   // Store the PKCE verifier in session
   req.session.verifier = pkce_pair['code_verifier'];
   const challenge = pkce_pair['code_challenge'];
@@ -68,11 +68,11 @@ router.get('/oauth-redirect', function (req, res, next) {
       .then((response) => {
         res.redirect(302, '/');
       }).catch((err) => {console.log("in error"); console.error(JSON.stringify(err));});
-      
+
 });
 // end::fullOAuthCodeExchange[]
 
-  // This code can be set in the last promise above to send the access and refresh tokens 
+  // This code can be set in the last promise above to send the access and refresh tokens
   // back to the browser as secure, HTTP-only cookies, an alternative to storing user info in the session
   //     .then((response) => {
   //       res.cookie('access_token', response.response.access_token, {httpOnly: true});

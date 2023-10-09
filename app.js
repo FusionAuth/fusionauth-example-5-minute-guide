@@ -1,14 +1,17 @@
-var createError = require('http-errors');
-var cookieParser = require('cookie-parser');
-var express = require('express');
-var expressSession = require('express-session');
-var path = require('path');
-var logger = require('morgan');
-var dotenv = require('dotenv').config();
+import createError from 'http-errors';
+import cookieParser from 'cookie-parser';
+import express from 'express';
+import expressSession from 'express-session';
+import path from 'path';
+import logger from 'morgan';
+import "dotenv/config.js";
+import { fileURLToPath } from 'url';
+import indexRouter from './routes/index.js';
 
-var indexRouter = require('./routes/index');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,4 +42,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;

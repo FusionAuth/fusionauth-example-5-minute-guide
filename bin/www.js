@@ -4,9 +4,10 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('fusionauth-node-example:server');
-var http = require('http');
+import app from '../app.js';
+import debug1 from 'debug';
+const debug = debug1('fusionauth-node-example:server');
+import http from 'http';
 
 /**
  * Get port from environment and store in Express.
@@ -65,7 +66,7 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      console.error(bind + ' imports elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':

@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const {FusionAuthClient} = require('@fusionauth/typescript-client');
+import {FusionAuthClient} from '@fusionauth/typescript-client';
 
 // tag::clientIdSecret[]
 // set in the environment or directly
@@ -81,4 +81,4 @@ router.get('/oauth-redirect', function (req, res, next) {
   //       res.redirect(302, '/');
   //     }).catch((err) => {console.log("in error"); console.error(JSON.stringify(err));});
 
-module.exports = router;
+export default router;

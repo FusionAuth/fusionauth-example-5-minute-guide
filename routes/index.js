@@ -13,7 +13,7 @@ const fusionAuthURL = process.env.BASE_URL;
 // end::baseURL[]
 
 const client = new FusionAuthClient('noapikeyneeded', fusionAuthURL);
-const pkceChallenge = require('pkce-challenge');
+const pkceChallengeImport = import('pkce-challenge');
 
 // tag::logoutRoute[]
 /* logout page. */
@@ -24,12 +24,13 @@ router.get('/logout', function (req, res, next) {
 // end::logoutRoute[]
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', async function (req, res, next) {
   const stateValue = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   req.session.stateValue = stateValue;
 
   //generate the pkce challenge/verifier dict
-  const pkce_pair = pkceChallenge.default();
+  const pkceChallenge = await pkceChallengeImport;
+  const pkce_pair = await pkceChallenge.default();
   // Store the PKCE verifier in session
   req.session.verifier = pkce_pair['code_verifier'];
   const challenge = pkce_pair['code_challenge'];

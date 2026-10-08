@@ -48,10 +48,10 @@ router.get('/oauth-redirect', function (req, res, next) {
                                                  req.session.verifier)
       .then((response) => {
         console.log(response.response.access_token);
-        return client.retrieveUserUsingJWT(response.response.access_token);
+        return client.retrieveUserInfoFromAccessToken(response.response.access_token);
       })
       .then((response) => {
-        req.session.user = response.response.user;
+        req.session.user = { firstName: response.response.given_name, email: response.response.email };
         return response;
       })
       .then((response) => {
